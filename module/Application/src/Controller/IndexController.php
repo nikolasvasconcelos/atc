@@ -7,13 +7,26 @@
 
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Zend\Http\Request;
+use Zend\Http\Client;
+use Zend\Mvc\Controller\AbstractRestfulController;
 
-class IndexController extends AbstractActionController
+class IndexController extends AbstractRestfulController
 {
     public function indexAction()
     {
-        return new ViewModel();
+        $page = $this->params()->fromQuery("page");
+        
+        $request = new Request();
+        $request->setUri("https://api.themoviedb.org/3/movie/upcoming?api_key=1f54bd990f1cdfb230adb312546d765d&language=en-US&page={$page}");
+        $request->getHeaders()->addHeaders([
+            'Content-Type' => 'application/json',
+            'Content-Type' => 'charset=utf-8'
+        ]);
+        
+        $client = new Client();
+        $response = $client->send($request);
+        
+        echo $response->getBody();
     }
 }
