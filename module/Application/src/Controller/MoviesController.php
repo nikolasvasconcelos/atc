@@ -8,6 +8,7 @@
 namespace Application\Controller;
 
 use Zend\Http\Request;
+use Zend\Http\Response;
 use Zend\Http\Client;
 use Zend\Mvc\Controller\AbstractRestfulController;
 
@@ -24,9 +25,14 @@ class MoviesController extends AbstractRestfulController
             ]);
             
             $client = new Client();
-            $response = $client->send($request);
+            $result = $client->send($request);
             
-            echo $response->getBody();
+            $response = new Response();
+            $response->setStatusCode(200);
+            $response->getHeaders()->addHeaders(array('Content-type' => 'application/json'));
+            $response->setContent($result->getBody());
+            
+            return $response;
         } else {
             echo "Nothing found";
         }
@@ -42,8 +48,13 @@ class MoviesController extends AbstractRestfulController
             ]);
             
             $client = new Client();
-            $response = $client->send($request);
+            $result = $client->send($request);
             
+            $response = new Response();
+            $response->setStatusCode(200);
+            $response->getHeaders()->addHeaders(array('Content-type' => 'application/json'));
+            $response->setContent($result->getBody());
+
             return $response;
         } else {
             echo "No image found";

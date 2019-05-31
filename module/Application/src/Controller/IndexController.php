@@ -8,8 +8,10 @@
 namespace Application\Controller;
 
 use Zend\Http\Request;
+use Zend\Http\Response;
 use Zend\Http\Client;
 use Zend\Mvc\Controller\AbstractRestfulController;
+use Zend\View\Model\JsonModel;
 
 class IndexController extends AbstractRestfulController
 {
@@ -25,8 +27,16 @@ class IndexController extends AbstractRestfulController
         ]);
         
         $client = new Client();
-        $response = $client->send($request);
-        
-        echo $response->getBody();
+        $result = $client->send($request);
+
+        //$this->_helper->layout->disableLayout();
+        //$this->_helper->viewRenderer->setNoRender(TRUE);
+
+        $response = new Response();
+        $response->setStatusCode(200);
+        $response->getHeaders()->addHeaders(array('Content-type' => 'application/json'));
+        $response->setContent($result->getBody());
+
+        return $response;
     }
 }
