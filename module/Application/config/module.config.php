@@ -44,6 +44,16 @@ return [
                     ],
                 ],
             ],
+            'img' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/genres',
+                    'defaults' => [
+                        'controller' => Controller\MoviesController::class,
+                        'action'     => 'getGenres',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
