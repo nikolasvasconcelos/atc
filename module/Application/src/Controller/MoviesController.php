@@ -16,9 +16,10 @@ class MoviesController extends AbstractRestfulController
 {
     public function indexAction () {
         $name = $this->params()->fromQuery("name");
+        $page = $this->params()->fromQuery("page");
         if ($name) {
             $request = new Request();
-            $request->setUri("https://api.themoviedb.org/3/search/movie?api_key=1f54bd990f1cdfb230adb312546d765d&query={$name}");
+            $request->setUri("https://api.themoviedb.org/3/search/movie?api_key=1f54bd990f1cdfb230adb312546d765d&query={$name}&page={$page}");
             $request->getHeaders()->addHeaders([
                 'Content-Type' => 'application/json',
                 'Content-Type' => 'charset=utf-8'
@@ -52,7 +53,8 @@ class MoviesController extends AbstractRestfulController
             
             $response = new Response();
             $response->setStatusCode(200);
-            $response->getHeaders()->addHeaders(array('Content-type' => 'application/json'));
+            $response->getHeaders()
+                ->addHeaderLine('Content-Type', 'image/png');
             $response->setContent($result->getBody());
 
             return $response;
