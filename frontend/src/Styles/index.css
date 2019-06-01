@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#search-movie-input::placeholder {
+  color: white;
+  font-weight: 600;
+}
+
+#search-movie-input:focus, #search-movie-input:hover {
+  outline:0px;
+}
+
+.movie-poster {
+  width: 350px;
+  height: 500px;
+  font-size: 30px;
+}
