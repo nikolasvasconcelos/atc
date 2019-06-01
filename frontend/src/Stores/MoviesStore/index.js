@@ -19,25 +19,23 @@ export default class MoviesStore {
 
   @action
   loadMovies = (page = 1) => {
-    axios.get("http://192.168.0.28/",{
+    axios.get("/",{
       params: {
         page,
       }
     }).then((response) => {
-      this.action == "filter" ? this.movies = response.data.results : this.movies = this.movies.concat(response.data.results)
+      this.action === "filter" ? this.movies = response.data.results : this.movies = this.movies.concat(response.data.results)
       this.name = ""
       this.action = "latest"
       this.total_pages = response.data.total_pages;
       this.total_results = response.data.total_results;
-      response.data.results.map((movie, i) => {
-        this.getMovieImg(movie,i)
-      })
+      response.data.results.map((movie, i) => this.getMovieImg(movie,i))
     });
   }
 
   @action
   filteredMovies = ( page, name) => {
-    if (this.action == "latest" && !name) return
+    if (this.action === "latest" && !name) return
     if (name) this.name = name
     axios.get("/search",{
       params: {
@@ -46,12 +44,10 @@ export default class MoviesStore {
       }
     }).then((response) => {
       this.action = "filter"
-      page == 1 ? this.movies = response.data.results : this.movies = this.movies.concat(response.data.results)
+      page === 1 ? this.movies = response.data.results : this.movies = this.movies.concat(response.data.results)
       this.total_pages = response.data.total_pages;
       this.total_results = response.data.total_results;
-      response.data.results.map((movie, i) => {
-        this.getMovieImg(movie,i)
-      })
+      response.data.results.map((movie, i) => this.getMovieImg(movie,i))
     });
   }
 

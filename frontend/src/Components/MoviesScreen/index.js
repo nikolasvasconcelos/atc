@@ -11,13 +11,13 @@ class MoviesScreen extends Component {
   }
 
   _renderMovie = () => {
-    const { movies } = this.props
+    const { movies, moviesImages, getGenre } = this.props
     return (
       <div className="row">
         {
           movies.map((movie,i) => {
             return (
-             <Movie key={i} movie={movie} image={this.props.moviesImages[String(movie.id)]} />
+             <Movie key={i} genre={getGenre} movie={movie} image={moviesImages[String(movie.id)]} />
             )
           })
         }
@@ -27,7 +27,7 @@ class MoviesScreen extends Component {
 
   _loadMore = (page) => {
     const { action, loadMovies, filtered } = this.props
-    action == "latest" ? loadMovies(page) : filtered(page)
+    action === "latest" ? loadMovies(page) : filtered(page)
   }
 
   render() {

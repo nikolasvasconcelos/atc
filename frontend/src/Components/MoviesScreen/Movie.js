@@ -11,9 +11,8 @@ export default class Movie extends Component {
   toggleInfo = () => this.setState( prevState => ({showInfo: !prevState.showInfo}) )
 
   render() {
-    const { movie, image } = this.props
+    const { movie, image, genre } = this.props
     const { showInfo } = this.state
-    //console.log(image)
     return (
       <div className="d-flex flex-fill col-4 flex-column align-items-center mb-2" >
         { 
@@ -24,7 +23,7 @@ export default class Movie extends Component {
             </div>
         }
         <p>{movie.title}</p>
-        <p>{movie.genre_ids}</p>
+        <p>{ movie.genre_ids.map((id,i) => <span key={i}>{i > 0 && " / "}{genre(id)}</span>) }</p>
         <p>{moment(movie.release_date).format("DD/MM/YYYY")}</p>
         <button onClick={this.toggleInfo} className="bg-light border-0">
           <FontAwesomeIcon icon={["fas", showInfo ? "chevron-up" : "chevron-down"]} />

@@ -40,26 +40,22 @@ class MoviesController extends AbstractRestfulController
     }
 
     public function getGenresAction () {
-        if ($name) {
-            $request = new Request();
-            $request->setUri("https://api.themoviedb.org/3/genre/movie/list?api_key=1f54bd990f1cdfb230adb312546d765d&language=en-US");
-            $request->getHeaders()->addHeaders([
-                'Content-Type' => 'application/json',
-                'Content-Type' => 'charset=utf-8'
-            ]);
-            
-            $client = new Client();
-            $result = $client->send($request);
-            
-            $response = new Response();
-            $response->setStatusCode(200);
-            $response->getHeaders()->addHeaders(array('Content-type' => 'application/json'));
-            $response->setContent($result->getBody());
-            
-            return $response;
-        } else {
-            echo "Nothing found";
-        }
+        $request = new Request();
+        $request->setUri("https://api.themoviedb.org/3/genre/movie/list?api_key=1f54bd990f1cdfb230adb312546d765d&language=en-US");
+        $request->getHeaders()->addHeaders([
+            'Content-Type' => 'application/json',
+            'Content-Type' => 'charset=utf-8'
+        ]);
+        
+        $client = new Client();
+        $result = $client->send($request);
+        
+        $response = new Response();
+        $response->setStatusCode(200);
+        $response->getHeaders()->addHeaders(array('Content-type' => 'application/json'));
+        $response->setContent($result->getBody());
+        
+        return $response;
     }
 
     public function getImageAction () {

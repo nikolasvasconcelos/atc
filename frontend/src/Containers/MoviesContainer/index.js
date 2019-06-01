@@ -7,5 +7,6 @@ export default inject(({ store }) => ({
   filtered: store.movies.filteredMovies,
   action: store.movies.action,
   total_results: store.movies.total_results,
+  getGenre: store.genres.getGenre,
   moviesImages: store.movies.getImages()
 }))(MoviesScreen);
