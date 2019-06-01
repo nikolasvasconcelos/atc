@@ -44,7 +44,7 @@ return [
                     ],
                 ],
             ],
-            'img' => [
+            'genres' => [
                 'type' => Literal::class,
                 'options' => [
                     'route'    => '/genres',

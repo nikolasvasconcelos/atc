@@ -3,7 +3,7 @@ import axios from "axios";
 import MoviesStore from "./MoviesStore";
 import GenresStore from "./GenresStore";
 
-axios.defaults.baseURL = 'http://192.168.0.28/';
+axios.defaults.baseURL = 'https://arcane-plains-18081.herokuapp.com';
 
 class RootStore {
   constructor() {
