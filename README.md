@@ -1,21 +1,12 @@
 # ZendSkeletonApplication
 
-## Project structure
+## Introduction
 
-# Frontend (frontend/)
- * `App/`: App configuration and Navigation
-  * `Components/`: All the React components separated by screens and shared components
-  * `Stores/`: The project Stores (controllers)
-  * `Theme/`: Common styles used in the whole app
+This is a skeleton application using the Zend Framework MVC layer and module
+systems. This application is meant to be used as a starting place for those
+looking to get their feet wet with Zend Framework.
 
-# Backend (module/Application)
-
- * `config/`: Routes and response configuration
-  * `src/`: Project Controllers
-
-Remaining folders are framework's boilerplates
-
-## Installing backend using Composer
+## Installation using Composer
 
 The easiest way to create a new Zend Framework project is to use
 [Composer](https://getcomposer.org/).  If you don't have it already installed,
@@ -230,10 +221,3 @@ $ composer cs-fix
 # Run PHPUnit tests:
 $ composer test
 ```
-
-## Installing frontend (in the frontend/ folder)
-
-  1. Make sure you have [**node**](https://nodejs.org/en/download/) installed.
-  2. Install [**yarn**](https://yarnpkg.com) by running `npm -g install yarn`
-  3. Run `yarn` to install the node modules
-  7. Run the `yarn start` to run in development mode 
