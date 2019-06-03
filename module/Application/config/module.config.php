@@ -24,13 +24,33 @@ return [
                     ],
                 ],
             ],
-            'application' => [
-                'type'    => Segment::class,
+            'search' => [
+                'type' => Literal::class,
                 'options' => [
-                    'route'    => '/application[/:action]',
+                    'route'    => '/search',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\MoviesController::class,
                         'action'     => 'index',
+                    ],
+                ],
+            ],
+            'img' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/movie',
+                    'defaults' => [
+                        'controller' => Controller\MoviesController::class,
+                        'action'     => 'getImage',
+                    ],
+                ],
+            ],
+            'genres' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/genres',
+                    'defaults' => [
+                        'controller' => Controller\MoviesController::class,
+                        'action'     => 'getGenres',
                     ],
                 ],
             ],
@@ -39,6 +59,7 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+            Controller\MoviesController::class => InvokableFactory::class
         ],
     ],
     'view_manager' => [
@@ -55,6 +76,9 @@ return [
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',
+        ],
+        'strategies' => [
+            'ViewJsonStrategy',
         ],
     ],
 ];
